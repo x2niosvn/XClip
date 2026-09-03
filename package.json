@@ -1,0 +1,69 @@
+{
+  "name": "xclip",
+  "version": "1.0.0",
+  "description": "XClip — Clipboard. Synced locally.",
+  "main": "dist/main/index.js",
+  "author": "XClip Team",
+  "license": "MIT",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node scripts/dev.mjs",
+    "build:renderer": "vite build",
+    "build:main": "tsc -p tsconfig.main.json",
+    "build:preload": "tsc -p tsconfig.preload.json",
+    "build": "npm run build:renderer && npm run build:main && npm run build:preload",
+    "start": "electron .",
+    "start:peer2": "electron . --profile=peer2 --port=38722",
+    "package": "npm run build && electron-builder --win"
+  },
+  "dependencies": {
+    "@types/sql.js": "^1.4.11",
+    "bonjour-service": "^1.4.4",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.16.0",
+    "sql.js": "^1.14.2",
+    "tailwind-merge": "^3.5.0",
+    "ws": "^8.21.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^18.3.21",
+    "@types/react-dom": "^18.3.5",
+    "@types/ws": "^8.18.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.21",
+    "cross-env": "^7.0.3",
+    "electron": "^34.3.0",
+    "electron-builder": "^25.1.8",
+    "postcss": "^8.5.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.0"
+  },
+  "build": {
+    "appId": "com.xclip.app",
+    "productName": "XClip",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
