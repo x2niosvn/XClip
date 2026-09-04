@@ -120,6 +120,25 @@ export class PeerSyncEngine {
     }
   }
 
+  public disconnectPeer(deviceId: string): void {
+    const ws = this.peerSockets.get(deviceId);
+    if (ws) {
+      try { ws.close(); } catch {}
+      this.peerSockets.delete(deviceId);
+    }
+    for (const [socket, id] of this.incomingSockets.entries()) {
+      if (id === deviceId) {
+        try { socket.close(); } catch {}
+        this.incomingSockets.delete(socket);
+      }
+    }
+    this.pendingPairings.delete(deviceId);
+    logger.info(`Disconnected peer session: ${deviceId}`);
+    if (this.onDevicesUpdatedCallback) {
+      this.onDevicesUpdatedCallback();
+    }
+  }
+
   public connectToPeer(device: Device): void {
     if (this.peerSockets.has(device.id)) {
       const existing = this.peerSockets.get(device.id);

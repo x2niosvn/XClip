@@ -49,7 +49,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         className="w-full bg-zinc-900/80 text-zinc-100 placeholder-zinc-500 text-sm pl-9 pr-24 py-2 rounded-lg border border-zinc-800/80 focus:outline-none focus:border-indigo-500/80 focus:ring-1 focus:ring-indigo-500/30 transition-all"
       />
 
-      {value ? (
+      {value && (
         <button
           onClick={onClear}
           className="absolute right-7 p-1 rounded-md text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800 transition-colors"
@@ -57,12 +57,6 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         >
           <X className="w-3.5 h-3.5" />
         </button>
-      ) : (
-        <div className="absolute right-7 flex items-center gap-1.5 text-[10px] text-zinc-500 pointer-events-none font-mono">
-          <kbd className="px-1.5 py-0.5 rounded bg-zinc-800 border border-zinc-700 text-zinc-400">↑</kbd>
-          <kbd className="px-1.5 py-0.5 rounded bg-zinc-800 border border-zinc-700 text-zinc-400">↓</kbd>
-          <span className="text-zinc-600">{navigateText}</span>
-        </div>
       )}
     </div>
   );

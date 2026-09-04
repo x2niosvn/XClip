@@ -253,6 +253,22 @@ export const App: React.FC = () => {
     return ok;
   };
 
+  const handleRemoveDevice = async (id: string) => {
+    if (!window.xclip) return false;
+    const ok = await window.xclip.removeDevice(id);
+    if (ok) {
+      setTrustedDevices((prev) => prev.filter((d) => d.id !== id));
+      const [allDiscovered, allTrusted] = await Promise.all([
+        window.xclip.getDiscoveredDevices(),
+        window.xclip.getTrustedDevices(),
+      ]);
+      setDevices(allDiscovered || []);
+      setTrustedDevices(allTrusted || []);
+      addToast('info', (t.toasts as any).deviceRemoved || 'Device removed');
+    }
+    return ok;
+  };
+
   const handleToggleMonitoring = async () => {
     if (!window.xclip) return;
     const next = await window.xclip.toggleMonitoring();
@@ -354,6 +370,7 @@ export const App: React.FC = () => {
       <ClipboardList
         items={filteredItems}
         selectedIndex={selectedIndex}
+        onSelectIndex={setSelectedIndex}
         onCopy={handleCopy}
         onTogglePin={handleTogglePin}
         onDelete={handleDelete}
@@ -383,7 +400,7 @@ export const App: React.FC = () => {
         onInitiatePairing={(id) => window.xclip.requestPairing(id)}
         onConfirmPairing={(id, code) => window.xclip.confirmPairing(id, code)}
         onCancelPairing={(id) => window.xclip.cancelPairing(id)}
-        onRemoveDevice={(id) => window.xclip.removeDevice(id)}
+        onRemoveDevice={handleRemoveDevice}
         incomingPairing={incomingPairing}
         onDismissIncomingPairing={() => setIncomingPairing(null)}
         t={t}

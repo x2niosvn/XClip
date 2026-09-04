@@ -70,6 +70,7 @@ export const translations = {
       lanOnlyNotice: 'LAN-only · Zero cloud routing',
       done: 'Done',
       removeDevice: 'Remove trusted device',
+      confirmRemovePrompt: 'Are you sure you want to unpair this device? You will need to pair again to sync.',
     },
 
     settingsModal: {
@@ -157,6 +158,7 @@ export const translations = {
       monitoringPaused: 'Clipboard monitoring paused',
       monitoringResumed: 'Clipboard monitoring resumed',
       devicePaired: 'Device successfully paired!',
+      deviceRemoved: 'Device successfully unpaired',
       pairingFailed: 'Pairing failed',
     },
   },
@@ -230,6 +232,7 @@ export const translations = {
       lanOnlyNotice: 'Chỉ trong mạng nội bộ · Tuyệt đối không qua máy chủ đám mây',
       done: 'Xong',
       removeDevice: 'Hủy ghép nối thiết bị',
+      confirmRemovePrompt: 'Bạn có chắc chắn muốn hủy ghép nối với thiết bị này không?',
     },
 
     settingsModal: {
@@ -317,6 +320,7 @@ export const translations = {
       monitoringPaused: 'Đã tạm dừng theo dõi clipboard',
       monitoringResumed: 'Đã tiếp tục theo dõi clipboard',
       devicePaired: 'Thiết bị đã được ghép nối thành công!',
+      deviceRemoved: 'Đã hủy ghép nối thiết bị thành công',
       pairingFailed: 'Ghép nối thất bại',
     },
   },

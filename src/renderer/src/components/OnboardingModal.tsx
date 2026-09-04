@@ -44,8 +44,8 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
         {/* STEP 1: WELCOME */}
         {step === 1 && (
           <div className="space-y-4 animate-fade-in">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center mx-auto shadow-glow shadow-indigo-500/30">
-              <span className="text-white font-black text-2xl tracking-wider">XC</span>
+            <div className="w-16 h-16 rounded-2xl overflow-hidden mx-auto shadow-glow shadow-indigo-500/30 border border-indigo-500/40 bg-zinc-900">
+              <img src="/icon.png" alt="XClip Logo" className="w-full h-full object-cover" />
             </div>
 
             <div className="space-y-1">

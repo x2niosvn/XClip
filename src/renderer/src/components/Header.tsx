@@ -36,17 +36,12 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="drag-region flex items-center justify-between px-4 py-3 border-b border-zinc-800/80 bg-zinc-950/90 select-none">
       {/* App Branding */}
       <div className="flex items-center gap-3">
-        <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center shadow-glow shadow-indigo-500/20">
-          <span className="text-white font-bold text-xs tracking-wider">XC</span>
+        <div className="w-8 h-8 rounded-lg overflow-hidden shadow-glow shadow-indigo-500/25 border border-indigo-500/30 flex items-center justify-center bg-zinc-900 flex-shrink-0">
+          <img src="/icon.png" alt="XClip Logo" className="w-full h-full object-cover" />
         </div>
         <div>
           <div className="flex items-center gap-2">
             <h1 className="text-sm font-semibold text-zinc-100 tracking-tight leading-none">{t.appTitle}</h1>
-            {isMonitoringPaused && (
-              <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center gap-1">
-                <Pause className="w-2.5 h-2.5" /> {t.paused}
-              </span>
-            )}
           </div>
           <p className="text-[11px] text-zinc-400 leading-none mt-0.5">{t.tagline}</p>
         </div>
@@ -90,14 +85,14 @@ export const Header: React.FC<HeaderProps> = ({
 
         <button
           onClick={onToggleMonitoring}
-          className={`p-1.5 rounded-md transition-colors ${
-            isMonitoringPaused
-              ? 'bg-amber-500/15 text-amber-400 hover:bg-amber-500/25 border border-amber-500/30'
-              : 'hover:bg-zinc-800/80 text-zinc-400 hover:text-zinc-200'
-          }`}
+          className="p-1.5 rounded-md hover:bg-zinc-800/80 transition-colors"
           title={isMonitoringPaused ? t.resumeMonitoring : t.pauseMonitoring}
         >
-          {isMonitoringPaused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
+          <Pause
+            className={`w-4 h-4 transition-colors ${
+              isMonitoringPaused ? 'text-rose-500 fill-rose-500' : 'text-emerald-400 fill-emerald-400'
+            }`}
+          />
         </button>
 
         <button

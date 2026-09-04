@@ -7,6 +7,7 @@ import { translations } from '../i18n/translations';
 interface ClipboardListProps {
   items: ClipboardItem[];
   selectedIndex: number;
+  onSelectIndex: (index: number) => void;
   onCopy: (id: string) => void;
   onTogglePin: (id: string) => void;
   onDelete: (id: string) => void;
@@ -18,6 +19,7 @@ interface ClipboardListProps {
 export const ClipboardList: React.FC<ClipboardListProps> = ({
   items,
   selectedIndex,
+  onSelectIndex,
   onCopy,
   onTogglePin,
   onDelete,
@@ -65,6 +67,7 @@ export const ClipboardList: React.FC<ClipboardListProps> = ({
                   key={item.id}
                   item={item}
                   isSelected={isSelected}
+                  onSelect={() => onSelectIndex(currentIdx)}
                   onCopy={onCopy}
                   onTogglePin={onTogglePin}
                   onDelete={onDelete}
@@ -96,6 +99,7 @@ export const ClipboardList: React.FC<ClipboardListProps> = ({
                   key={item.id}
                   item={item}
                   isSelected={isSelected}
+                  onSelect={() => onSelectIndex(currentIdx)}
                   onCopy={onCopy}
                   onTogglePin={onTogglePin}
                   onDelete={onDelete}

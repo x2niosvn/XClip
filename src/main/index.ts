@@ -115,6 +115,7 @@ function createMainWindow(): void {
     frame: false,
     show: false,
     backgroundColor: '#18181b',
+    icon: path.join(app.getAppPath(), 'assets', 'icon.png'),
     webPreferences: {
       preload: path.join(__dirname, '../preload/index.js'),
       contextIsolation: true,
@@ -370,6 +371,8 @@ ipcMain.handle('cancel-pairing', async (_e, deviceId: string) => {
 ipcMain.handle('remove-device', async (_e, deviceId: string) => {
   db.removeDevice(deviceId);
   discovery.updateDeviceStatus(deviceId, 'available');
+  peerSync.disconnectPeer(deviceId);
+  mainWindow?.webContents.send('devices-changed', discovery.getDiscoveredDevices());
   return true;
 });
 

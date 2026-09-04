@@ -44,6 +44,7 @@ export const DevicesModal: React.FC<DevicesModalProps> = ({
   const [generatedCode, setGeneratedCode] = useState<string | null>(null);
   const [isPairingLoading, setIsPairingLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [removingId, setRemovingId] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
@@ -229,8 +230,19 @@ export const DevicesModal: React.FC<DevicesModalProps> = ({
                         {t.settingsModal.pairedCount}
                       </span>
                       <button
-                        onClick={() => onRemoveDevice(dev.id)}
-                        className="p-1 rounded hover:bg-red-500/20 text-zinc-500 hover:text-red-400 transition-colors"
+                        onClick={async () => {
+                          const confirmMsg = dt.confirmRemovePrompt || 'Hủy ghép nối thiết bị này?';
+                          if (confirm(`${confirmMsg}\n• ${dev.name}`)) {
+                            setRemovingId(dev.id);
+                            try {
+                              await onRemoveDevice(dev.id);
+                            } finally {
+                              setRemovingId(null);
+                            }
+                          }
+                        }}
+                        disabled={removingId === dev.id}
+                        className="p-1.5 rounded-md hover:bg-red-500/20 text-zinc-400 hover:text-red-300 transition-colors disabled:opacity-50"
                         title={dt.removeDevice}
                       >
                         <Trash2 className="w-3.5 h-3.5" />

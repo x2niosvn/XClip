@@ -366,8 +366,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             {/* ABOUT TAB */}
             {activeTab === 'about' && (
               <div className="space-y-4 text-center py-4 animate-fade-in">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center mx-auto shadow-glow shadow-indigo-500/25">
-                  <span className="text-white font-bold text-lg">XC</span>
+                <div className="w-16 h-16 rounded-2xl overflow-hidden mx-auto shadow-glow shadow-indigo-500/30 border border-indigo-500/40 bg-zinc-900">
+                  <img src="/icon.png" alt="XClip Logo" className="w-full h-full object-cover" />
                 </div>
 
                 <div>
