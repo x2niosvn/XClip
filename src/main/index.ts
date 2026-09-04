@@ -132,6 +132,7 @@ function createMainWindow(): void {
 
   // Forward renderer console logs and errors to main logger
   mainWindow.webContents.on('console-message', (_event, level, message, line, sourceId) => {
+    if (message.includes('Electron Security Warning')) return;
     if (level >= 2) {
       logger.error(`[Renderer Error] ${message} (${sourceId}:${line})`);
     }

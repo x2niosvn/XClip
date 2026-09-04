@@ -26,6 +26,7 @@ async function start() {
     ...process.env,
     VITE_DEV_SERVER_URL: `http://localhost:${port}`,
     NODE_ENV: 'development',
+    ELECTRON_DISABLE_SECURITY_WARNINGS: 'true',
   };
 
   const electronProcess = spawn('npx.cmd electron .', {
